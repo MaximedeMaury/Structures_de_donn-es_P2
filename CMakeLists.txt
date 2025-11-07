@@ -4,4 +4,13 @@ project(2526_TI301_PJT C)
 set(CMAKE_C_STANDARD 11)
 
 add_executable(TI_301_PJT
-        main.c utils.c graph.c)
+    main.c utils.c utils.h
+    list.c
+    list.h
+    tarjan.c
+    tarjan.h
+    hasse.h
+    markov.c
+    markov.h
+    hasse.c)
+
