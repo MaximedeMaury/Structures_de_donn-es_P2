@@ -18,7 +18,7 @@ void removeTransitiveLinks(t_link_array *p_link_array)
                 t_link link2 = p_link_array->links[j];
                 if (link1.from == link2.from)
                 {
-                    // look for a link from link2.to to link1.to
+
                     int k = 0;
                     while (k < p_link_array->log_size && !to_remove)
                     {
@@ -38,7 +38,7 @@ void removeTransitiveLinks(t_link_array *p_link_array)
         }
         if (to_remove)
         {
-            // remove link1 by replacing it with the last link
+
             p_link_array->links[i] = p_link_array->links[p_link_array->log_size - 1];
             p_link_array->log_size--;
         }
@@ -59,7 +59,7 @@ t_link_array *create_link_array(const t_partition *part, const liste_adjacence *
     link_array->log_size = 0;
     link_array->links = (t_link *)malloc(link_array->phys_size * sizeof(t_link));
 
-    // Créer une map sommet -> classe
+
     int *class_map = (int *)malloc((graph->taille + 1) * sizeof(int));
     for (int i = 0; i < part->taille; i++) {
         for (int j = 0; j < part->classes[i].taille; j++) {
@@ -67,7 +67,7 @@ t_link_array *create_link_array(const t_partition *part, const liste_adjacence *
         }
     }
 
-    // Parcourir toutes les arêtes pour trouver les liens entre classes
+
     for (int i = 0; i < graph->taille; i++) {
         list_t *liste = &graph->liste_arretes[i];
         arrete_t *current = liste->head;
@@ -77,7 +77,7 @@ t_link_array *create_link_array(const t_partition *part, const liste_adjacence *
             int class_to = class_map[current->sommet_arrive];
 
             if (class_from != class_to) {
-                // Vérifier si le lien existe déjà
+
                 int exists = 0;
                 for (int k = 0; k < link_array->log_size; k++) {
                     if (link_array->links[k].from == class_from &&
