@@ -17,7 +17,6 @@ void removeTransitiveLinks(t_link_array *p_link_array)
                 t_link link2 = p_link_array->links[j];
                 if (link1.from == link2.from)
                 {
-                    // look for a link from link2.to to link1.to
                     int k = 0;
                     while (k < p_link_array->log_size && !to_remove)
                     {
@@ -37,7 +36,6 @@ void removeTransitiveLinks(t_link_array *p_link_array)
         }
         if (to_remove)
         {
-            // remove link1 by replacing it with the last link
             p_link_array->links[i] = p_link_array->links[p_link_array->log_size - 1];
             p_link_array->log_size--;
         }
