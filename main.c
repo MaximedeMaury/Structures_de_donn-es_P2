@@ -67,7 +67,7 @@ void debug_mermaid_output(const char *filename) {
 	printf("=== FIN DU CONTENU ===\n");
 }
 
-const char *file_name = "/home/gost/CLionProjects/TP_PROJET-EFREI/data/exemple1_from_chatGPT.txt";
+const char *file_name = "/data/exemple1.txt";
 
 int main() {
 
