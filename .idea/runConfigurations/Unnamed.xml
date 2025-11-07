@@ -1,0 +1,8 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Unnamed" type="CppFileRunConfiguration" factoryName="CppFileRunConfiguration" singleton="false" nameIsGenerated="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Projet_C_P2" TARGET_NAME="CMakeLists.txt" CONFIG_NAME="Unnamed">
+    <option name="sourceFile" value="C:\Users\glede\CLionProjects\Projet_C_P2\CMakeLists.txt" />
+    <method v="2">
+      <option name="com.jetbrains.cidr.cpp.runfile.CppFileBuildBeforeRunTaskProvider$BasicBuildBeforeRunTask" enabled="true" />
+    </method>
+  </configuration>
+</component>
