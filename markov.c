@@ -19,7 +19,7 @@ int is_markov_graph(const liste_adjacence *graph) {
 
         // Vérifier si la somme est entre 0.99 et 1.01 (tolérance pour les erreurs d'arrondi)
         if (fabs(sum - 1.0f) > 0.01f) {
-            printf("Erreur: la somme des probabilités du sommet %d est %.3f\n", i + 1, sum);
+            printf("Erreur: la somme des probabilites du sommet %d est %.3f\n", i + 1, sum);
             return 0;
         }
     }
@@ -92,7 +92,7 @@ void generate_mermaid_graph(const liste_adjacence *graph, const char *filename) 
     }
 
     fclose(file);
-    printf("Fichier Mermaid généré: %s\n", filename);
+    printf("Fichier Mermaid genere: %s\n", filename);
 }
 
 //void generate_mermaid_graph(const liste_adjacence *graph, const char *filename) {
@@ -193,7 +193,7 @@ void generate_mermaid_hasse(const t_partition *partition, const liste_adjacence 
 
     free(class_map);
     fclose(file);
-    printf("Fichier Hasse Mermaid généré: %s\n", filename);
+    printf("Fichier Hasse Mermaid genere: %s\n", filename);
 }
 
 void analyze_graph_characteristics(const t_partition *partition, const liste_adjacence *graph) {
@@ -232,8 +232,8 @@ void analyze_graph_characteristics(const t_partition *partition, const liste_adj
 
     for (int i = 0; i < partition->taille; i++) {
         if (has_outgoing[i]) {
-            printf("Classe %s: TRANSTOIRE - ", partition->classes[i].nom);
-            printf("Les états ");
+            printf("Classe %s: TRANSITOIRE - ", partition->classes[i].nom);
+            printf("Les etats ");
             for (int j = 0; j < partition->classes[i].taille; j++) {
                 printf("%d", partition->classes[i].sommets[j]);
                 if (j < partition->classes[i].taille - 1) printf(",");
@@ -241,7 +241,7 @@ void analyze_graph_characteristics(const t_partition *partition, const liste_adj
             printf(" sont transitoires\n");
         } else {
             printf("Classe %s: PERSISTANTE - ", partition->classes[i].nom);
-            printf("Les états ");
+            printf("Les etats ");
             for (int j = 0; j < partition->classes[i].taille; j++) {
                 printf("%d", partition->classes[i].sommets[j]);
                 if (j < partition->classes[i].taille - 1) printf(",");
@@ -250,7 +250,7 @@ void analyze_graph_characteristics(const t_partition *partition, const liste_adj
 
             // Vérifier les états absorbants
             if (partition->classes[i].taille == 1) {
-                printf("  -> L'état %d est ABSORBANT\n", partition->classes[i].sommets[0]);
+                printf("  -> L'etat %d est ABSORBANT\n", partition->classes[i].sommets[0]);
             }
         }
     }
@@ -258,7 +258,7 @@ void analyze_graph_characteristics(const t_partition *partition, const liste_adj
     if (irreducible) {
         printf("Le graphe de Markov est IRREDUCTIBLE\n");
     } else {
-        printf("Le graphe de Markov n'est pas irréductible\n");
+        printf("Le graphe de Markov n'est pas irreductible\n");
     }
 
     free(class_map);

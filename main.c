@@ -5,7 +5,7 @@
 #include "tarjan.h"
 
 void verify_graph_edges(const liste_adjacence *graph) {
-	printf("\n=== VERIFICATION DES ARÊTES ===\n");
+	printf("\n=== VERIFICATION DES ARETES ===\n");
 	int total_edges = 0;
 
 	for (int i = 0; i < graph->taille; i++) {
@@ -22,11 +22,11 @@ void verify_graph_edges(const liste_adjacence *graph) {
 		}
 
 		if (edge_count == 0) {
-			printf("AUCUNE ARÊTE");
+			printf("AUCUNE ARETE");
 		}
 		printf("\n");
 	}
-	printf("Total des arêtes: %d\n", total_edges);
+	printf("Total des aretes: %d\n", total_edges);
 }
 
 void debug_graph_structure(const liste_adjacence *graph) {
@@ -38,7 +38,7 @@ void debug_graph_structure(const liste_adjacence *graph) {
 		printf("Sommet %d: ", i + 1);
 
 		if (liste->head == NULL) {
-			printf("AUCUNE ARÊTE\n");
+			printf("AUCUNE ARETE\n");
 		} else {
 			arrete_t *current = liste->head;
 			while (current != NULL) {
@@ -74,7 +74,7 @@ int main() {
 	printf("=== CHARGEMENT DU GRAPHE ===\n");
 	liste_adjacence *graphe = readGraph(file_name);
 
-	printf("\n=== VERIFICATION DES ARÊTES ===\n");
+	printf("\n=== VERIFICATION DES ARETES ===\n");
 	verify_graph_edges(graphe);
 
 	printf("\n=== AFFICHAGE DU GRAPHE ===\n");

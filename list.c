@@ -76,7 +76,7 @@ void list_add_cell(list_t *list, int sommet_depart, int sommet_arrive, float pro
     if (new_cell == NULL) return;
 
     // Debug important
-    printf("DEBUG list_add_cell: Ajout arête %d -> %d (prob=%.3f)\n",
+    printf("DEBUG list_add_cell: Ajout arete %d -> %d (prob=%.3f)\n",
            sommet_depart, sommet_arrive, probabilite);
 
     // si la liste est vide.

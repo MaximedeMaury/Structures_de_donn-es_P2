@@ -33,7 +33,7 @@ liste_adjacence *readGraph(const char *filename) {
     liste_adjacence *graphe;
 
     if (file == NULL) {
-        perror("Could not open file for reading");
+        perror("Je ne peux pass ouvrir le fichier pour le lire");
         exit(EXIT_FAILURE);
     }
 
@@ -47,7 +47,7 @@ liste_adjacence *readGraph(const char *filename) {
 
     graphe = create_graph(nbvert);
     if (graphe == NULL) {
-        perror("échec de création du graphe");
+        perror("echec de creation du graphe");
         fclose(file);
         exit(EXIT_FAILURE);
     }
@@ -58,7 +58,7 @@ liste_adjacence *readGraph(const char *filename) {
         printf("DEBUG readGraph ligne %d: %d %d %.3f\n", line_count, depart, arrivee, proba);
 
         if (depart < 1 || depart > nbvert || arrivee < 1 || arrivee > nbvert) {
-            printf("Warning: Arête (%d, %d) ignorée - hors limites\n", depart, arrivee);
+            printf("Warning: Arete (%d, %d) ignoree - hors limites\n", depart, arrivee);
             continue;
         }
 
@@ -66,7 +66,7 @@ liste_adjacence *readGraph(const char *filename) {
         list_add_cell(&graphe->liste_arretes[depart - 1], depart, arrivee, proba);
     }
 
-    printf("DEBUG: %d lignes d'arêtes lues\n", line_count);
+    printf("DEBUG: %d lignes d'aretes lues\n", line_count);
     fclose(file);
     return graphe;
 }
