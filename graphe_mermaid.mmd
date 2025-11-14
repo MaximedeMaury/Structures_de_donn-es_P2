@@ -1,0 +1,17 @@
+---
+config:
+    layout: elk
+    theme: neo
+    look: neo
+---
+flowchart LR
+    N1((1))
+    N2((2))
+    N3((3))
+    N4((4))
+
+    N1-->|0.500|N1
+    N1-->|0.500|N2
+    N2-->|1.000|N3
+    N3-->|1.000|N4
+    N4-->|1.000|N1

@@ -1,0 +1,4 @@
+"C:\Program Files\JetBrains\CLion 2024.3.2\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "MinGW Makefiles" -S C:\Users\maxim\CLionProjects\Structures_de_donn-es_P2 -B C:\Users\maxim\CLionProjects\Structures_de_donn-es_P2\cmake-build-debug
+-- Configuring done (0.5s)
+-- Generating done (0.0s)
+-- Build files have been written to: C:/Users/maxim/CLionProjects/Structures_de_donn-es_P2/cmake-build-debug
