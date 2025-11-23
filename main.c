@@ -3,6 +3,7 @@
 #include "utils.h"
 #include "markov.h"
 #include "tarjan.h"
+#include "Matrix.h"
 
 void verify_graph_edges(const liste_adjacence *graph) {
 	printf("\n=== VERIFICATION DES ARETES ===\n");
@@ -67,7 +68,7 @@ void debug_mermaid_output(const char *filename) {
 	printf("=== FIN DU CONTENU ===\n");
 }
 
-const char *file_name = "data/exemple_valid_step3.txt";
+const char *file_name = "data/exemple1_from_chatGPT.txt";
 
 int main() {
 
@@ -102,6 +103,57 @@ int main() {
 
 	printf("\n=== ANALYSE DES CARACTERISTIQUES ===\n");
 	analyze_graph_characteristics(partition, graphe);
+	printf("\n=== ETAPE 3 : CALCULS MATRICIELS ===\n");
+	t_matrix M = createMatrixFromGraph(graphe);
+	printf("Matrice de transition M :\n");
+	printMatrix(M);
+
+	// 1. Calcul de M^3 (Prévision à 3 jours) [cite: 91]
+	t_matrix M_pow = createEmptyMatrix(M.rows, M.cols);
+	t_matrix M_res = createEmptyMatrix(M.rows, M.cols);
+	copyMatrix(M_pow, M); // M^1
+
+	// M^2
+	multiplyMatrices(M_pow, M, M_res);
+	copyMatrix(M_pow, M_res);
+	// M^3
+	multiplyMatrices(M_pow, M, M_res);
+	copyMatrix(M_pow, M_res);
+
+	printf("\nMatrice M^3 (Probabilites a 3 etapes) :\n");
+	printMatrix(M_pow);
+
+	// 2. Recherche de convergence (Stationnaire) [cite: 134]
+	printf("\nRecherche de distribution stationnaire (Convergence)...\n");
+	t_matrix M_prev = createEmptyMatrix(M.rows, M.cols);
+	copyMatrix(M_pow, M); // Reset à M
+
+	int k = 1;
+	float diff = 1.0f;
+	while (diff > 0.001f && k < 1000) { // Limite de sécurité
+		copyMatrix(M_prev, M_pow);
+		multiplyMatrices(M_prev, M, M_pow); // M^(k+1)
+		diff = diffMatrix(M_pow, M_prev);
+		k++;
+	}
+	printf("Convergence atteinte a k=%d (diff=%.5f)\n", k, diff);
+	printf("Distribution stationnaire approximative :\n");
+	printMatrix(M_pow);
+
+	// 3. Bonus : Périodicité par classe
+	printf("\n=== BONUS : PERIODICITE ===\n");
+	for (int i = 0; i < partition->taille; i++) {
+		t_matrix sub = subMatrix(M, partition, i);
+		int p = getPeriod(sub);
+		printf("Classe %s : Periode = %d\n", partition->classes[i].nom, p);
+		freeMatrix(&sub);
+	}
+
+	// Nettoyage matrices
+	freeMatrix(&M);
+	freeMatrix(&M_pow);
+	freeMatrix(&M_res);
+	freeMatrix(&M_prev);
 
 	printf("\n=== NETTOYAGE MEMOIRE ===\n");
 	free_partition(partition);

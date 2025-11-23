@@ -1,22 +1,27 @@
-//
-// Created by maxim on 23/11/2025.
-//
-
 #ifndef MATRIX_H
 #define MATRIX_H
-#ifndef INC_2526_TI301_PJT_MATRIX_H
-#define INC_2526_TI301_PJT_MATRIX_H
-#include "utils.h"
 
-float **create_matrix(t_adjacency_list *graph);
-float **create_empty_matrix(int size);
-float **fill_matrix_from_matrix(int size, float **source_matrix, float **dest_matrix);
-float **multiply_matrices(int size, float **matrix_a, float **matrix_b);
-float **multiply_n_times(int n,float **matrix_a, float **matrix_b);
-float **diff(float **matrix_a, float **matrix_b);
-void print_matrix(int size, float **matrix);
+#include "markov.h" // Pour t_partition et liste_adjacence
 
+typedef struct {
+    int rows;
+    int cols;
+    float **data;
+} t_matrix;
 
+// --- Etape 1 : Calculs matriciels de base ---
+t_matrix createEmptyMatrix(int rows, int cols);
+t_matrix createMatrixFromGraph(const liste_adjacence *graph);
+void copyMatrix(t_matrix dest, t_matrix src);
+void multiplyMatrices(t_matrix m1, t_matrix m2, t_matrix result);
+float diffMatrix(t_matrix m1, t_matrix m2);
+void printMatrix(t_matrix m);
+void freeMatrix(t_matrix *m);
 
-#endif //INC_2526_TI301_PJT_MATRIX_H
-#endif //MATRIX_H
+// --- Etape 2 : Sous-matrices et partitions ---
+t_matrix subMatrix(t_matrix matrix, t_partition *part, int compo_index);
+
+// --- Bonus : Périodicité ---
+int getPeriod(t_matrix sub_matrix);
+
+#endif // MATRIX_H
